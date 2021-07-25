@@ -5,7 +5,8 @@ Library  SeleniumLibrary
 
 ${LOGIN URL}    https://www.flipkart.com/
 ${BROWSER}    chrome
-${LINK2}    https://www.flipkart.com/samsung-galaxy-m32-light-blue-64-gb/p/itmabe8e9a1d5e47?pid=MOBG4NZWP3PTD9TE&lid=LSTMOBG4NZWP3PTD9TETJLDAK&marketplace=FLIPKART&store=tyy%2F4io&srno=b_1_1&otracker=browse&fm=neo%2Fmerchandising&iid=34265f54-b8ec-4d8a-a39e-9a9d8cdc4e05.MOBG4NZWP3PTD9TE.SEARCH&ppt=clp&ppn=samsung-mobile-store&ssid=qnjhlbmpmo0000001627227554033
+${LINK1}    https://www.flipkart.com/viewcart?otracker=PP_GoToCart
+
 
 *** Test Cases ***
 Valid login page
@@ -19,7 +20,9 @@ Valid login page
     View Option
     Click Moblie
     Change Page
-    Add to Cart
+    Check URL
+    Close Browser
+
 
 
 *** Keywords ***
@@ -53,14 +56,21 @@ View Option
 
 Click Moblie
     sleep  1s
-    Click Element   xpath://img[@alt='SAMSUNG Galaxy M32 (Light Blue, 64 GB)']
+    Click Element   xpath://div[normalize-space()='SAMSUNG Galaxy M32 (Light Blue, 64 GB)']
 
 Change Page
     sleep  1s
-    Switch Window       ${LINK2}
+    Switch Window       NEW
+    Click Element       xpath://button[normalize-space()='ADD TO CART']
 
-Add to Cart
+Check URL
     sleep  1s
-    Click Element  xpath://button[normalize-space()='ADD TO CART']
+    Location Should Contain     ${LINK1}
+
+Close Browser
+    sleep  1s
+    [TEARDOWN]  Close Browser
+
+
 
 
