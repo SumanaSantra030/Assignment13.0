@@ -1,0 +1,70 @@
+*** Settings ***
+Library  SeleniumLibrary
+
+*** Variables ***
+
+${LOGIN URL}    https://www.flipkart.com/
+${BROWSER}    chrome
+
+*** Test Cases ***
+Valid login page
+    Open Browser to Login page
+    Input Username  9950144030
+    Input Password  Da@mon20
+    Submit Credentials
+    Open Electornics
+    Open Menu to Samsung
+    Open Samsung
+    View Option
+    Choose Moblie
+    Add to Cart
+    Check URL
+
+
+*** Keywords ***
+Open Browser to Login page
+    Open Browser    ${LOGIN URL}    ${BROWSER}
+Input Username
+    [Arguments]  ${username}
+    Input Text  xpath://input[@class='_2IX_2- VJZDxU']   ${username}
+Input password
+    [Arguments]  ${password}
+    Input Text  xpath://input[@type='password']    ${password}
+Submit Credentials
+    sleep  1s
+    Click Element   xpath://button[@type='submit']//span[contains(text(),'Login')]
+
+Open Electornics
+    sleep  1s
+    Click Element   xpath://div[contains(text(),'Electronics')]
+
+Open Menu to Samsung
+    sleep  1s
+    Click Element   xpath://span[normalize-space()='Electronics']
+
+Open Samsung
+    sleep   1s
+    Click Element   xpath://a[normalize-space()='Samsung']
+
+View Option
+    sleep  1s
+    Click Element   xpath://div[3]//div[2]//div[1]//div[1]//div[2]//a[1]//span[1]
+
+Choose Moblie
+    sleep  1s
+    Mouse Down   xpath://div[normalize-space()='SAMSUNG Galaxy A22 (Mint, 128 GB)']
+
+Click Moblie
+    sleep  1s
+    Click Element   xpath://div[normalize-space()='SAMSUNG Galaxy A22 (Mint, 128 GB)']
+
+
+Add to Cart
+    sleep  1s
+    Click Element   xpath://button[normalize-space()='ADD TO CART']
+
+Check URL
+    sleep  1s
+    Page Should Contain Link    link:https://www.flipkart.com/viewcart?otracker=PP_GoToCart
+
+
