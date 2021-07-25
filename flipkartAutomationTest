@@ -5,6 +5,7 @@ Library  SeleniumLibrary
 
 ${LOGIN URL}    https://www.flipkart.com/
 ${BROWSER}    chrome
+${LINK2}    https://www.flipkart.com/samsung-galaxy-m32-light-blue-64-gb/p/itmabe8e9a1d5e47?pid=MOBG4NZWP3PTD9TE&lid=LSTMOBG4NZWP3PTD9TETJLDAK&marketplace=FLIPKART&store=tyy%2F4io&srno=b_1_1&otracker=browse&fm=neo%2Fmerchandising&iid=34265f54-b8ec-4d8a-a39e-9a9d8cdc4e05.MOBG4NZWP3PTD9TE.SEARCH&ppt=clp&ppn=samsung-mobile-store&ssid=qnjhlbmpmo0000001627227554033
 
 *** Test Cases ***
 Valid login page
@@ -16,9 +17,9 @@ Valid login page
     Open Menu to Samsung
     Open Samsung
     View Option
-    Choose Moblie
+    Click Moblie
+    Change Page
     Add to Cart
-    Check URL
 
 
 *** Keywords ***
@@ -50,21 +51,16 @@ View Option
     sleep  1s
     Click Element   xpath://div[3]//div[2]//div[1]//div[1]//div[2]//a[1]//span[1]
 
-Choose Moblie
-    sleep  1s
-    Mouse Down   xpath://div[normalize-space()='SAMSUNG Galaxy A22 (Mint, 128 GB)']
-
 Click Moblie
     sleep  1s
-    Click Element   xpath://div[normalize-space()='SAMSUNG Galaxy A22 (Mint, 128 GB)']
+    Click Element   xpath://img[@alt='SAMSUNG Galaxy M32 (Light Blue, 64 GB)']
 
+Change Page
+    sleep  1s
+    Switch Window       ${LINK2}
 
 Add to Cart
     sleep  1s
-    Click Element   xpath://button[normalize-space()='ADD TO CART']
-
-Check URL
-    sleep  1s
-    Page Should Contain Link    link:https://www.flipkart.com/viewcart?otracker=PP_GoToCart
+    Click Element  xpath://button[normalize-space()='ADD TO CART']
 
 
