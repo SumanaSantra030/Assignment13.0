@@ -9,8 +9,8 @@ ${BROWSER}    chrome
 *** Test Cases ***
 Valid login page
     Open Browser to Login page
-    Input Username  9950144030
-    Input Password  Da@mon20
+    Input Username  moblienumber
+    Input Password  pswd
     Submit Credentials
     Open Electornics
     Open Menu to Samsung
